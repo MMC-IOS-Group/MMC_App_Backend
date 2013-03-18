@@ -78,6 +78,8 @@ class App < Sinatra::Base
       '/css/announcements.css'
     ]
 
+    css_compression :sass
+    js_compression :uglify
     App.assets.js :jslibs, settings.global_assets[:jslibs]
   }
 

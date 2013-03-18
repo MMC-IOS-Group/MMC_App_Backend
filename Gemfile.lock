@@ -59,6 +59,8 @@ GEM
     do_sqlite3 (0.10.12)
       data_objects (= 0.10.12)
     eventmachine (1.0.1)
+    execjs (1.4.0)
+      multi_json (~> 1.0)
     fastercsv (1.5.5)
     hashie (1.2.0)
     jsmin (1.0.1)
@@ -104,6 +106,9 @@ GEM
       eventmachine (>= 0.12.6)
       rack (>= 1.0.0)
     tilt (1.3.4)
+    uglifier (1.3.0)
+      execjs (>= 0.3.0)
+      multi_json (~> 1.0, >= 1.0.2)
     uuidtools (2.1.3)
 
 PLATFORMS
@@ -122,3 +127,4 @@ DEPENDENCIES
   sinatra-assetpack (~> 0.1.6)
   sinatra-contrib (~> 1.3.2)
   thin
+  uglifier
