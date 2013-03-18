@@ -40,6 +40,24 @@ class App < Sinatra::Base
     serve '/css', from: 'assets/css'
     serve '/img', from: 'assets/img'
 
+    set :global_assets, Hash.new
+    settings.global_assets[:jslibs] = [
+      '/js/libs/jquery-1.9.1.min.js',
+      '/js/libs/bootstrap/bootstrap-transition.js',
+      '/js/libs/bootstrap/bootstrap-alert.js',
+      '/js/libs/bootstrap/bootstrap-modal.js',
+      '/js/libs/bootstrap/bootstrap-dropdown.js',
+      '/js/libs/bootstrap/bootstrap-scrollspy.js',
+      '/js/libs/bootstrap/bootstrap-tab.js',
+      '/js/libs/bootstrap/bootstrap-tooltip.js',
+      '/js/libs/bootstrap/bootstrap-popover.js',
+      '/js/libs/bootstrap/bootstrap-button.js',
+      '/js/libs/bootstrap/bootstrap-collapse.js',
+      '/js/libs/bootstrap/bootstrap-carousel.js',
+      '/js/libs/bootstrap/bootstrap-typeahead.js',
+      '/js/libs/bootstrap/bootstrap-affix.js',
+    ]
+
     css :admin_css, [
       '/css/style.css',
       '/css/admin.css'
@@ -53,26 +71,16 @@ class App < Sinatra::Base
       '/js/user_admin.js'
     ]
 
-    js :jslibs, App.settings.global_assets[:jslibs]
+    js :jslibs, settings.global_assets[:jslibs]
+
+    css :announcement_css, [
+      '/css/style.css',
+      '/css/announcements.css'
+    ]
+
+    App.assets.js :jslibs, settings.global_assets[:jslibs]
   }
 
-  set :global_assets, Hash.new
-  App.settings.global_assets[:jslibs] = [
-    '/js/libs/jquery-1.9.1.min.js',
-    '/js/libs/bootstrap/bootstrap-transition.js',
-    '/js/libs/bootstrap/bootstrap-alert.js',
-    '/js/libs/bootstrap/bootstrap-modal.js',
-    '/js/libs/bootstrap/bootstrap-dropdown.js',
-    '/js/libs/bootstrap/bootstrap-scrollspy.js',
-    '/js/libs/bootstrap/bootstrap-tab.js',
-    '/js/libs/bootstrap/bootstrap-tooltip.js',
-    '/js/libs/bootstrap/bootstrap-popover.js',
-    '/js/libs/bootstrap/bootstrap-button.js',
-    '/js/libs/bootstrap/bootstrap-collapse.js',
-    '/js/libs/bootstrap/bootstrap-carousel.js',
-    '/js/libs/bootstrap/bootstrap-typeahead.js',
-    '/js/libs/bootstrap/bootstrap-affix.js',
-  ]
 
   get '/' do
     redirect '/announcements'

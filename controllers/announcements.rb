@@ -5,13 +5,7 @@ class App < Sinatra::Base
     App.assets.css :announcement_css, [
         '/css/style.css',
         '/css/announcements.css'
-      ]
-
-    App.assets.js :admin_js, [
-        '/js/admin.js'
-      ]
-
-    App.assets.js :jslibs, App.settings.global_assets[:jslibs]
+    ]
 
     get /(\/)?/ do
 
