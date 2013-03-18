@@ -1,0 +1,36 @@
+.tooltip {
+    .tooltip-inner {
+        text-align: left;
+        font-size: 13px;
+    }
+}
+
+table {
+    border-collapse: collapse;
+}
+td:first-child {
+    width: 50%;
+}
+
+table div {
+    overflow: hidden;
+    padding: 10px;
+    border-top: 1px solid #eee;
+}
+.announcement-content {
+    td {
+        border: none;
+        padding: 0;
+    }
+    div {
+        display: none;
+    }
+}
+
+#sidebar-wrapper {
+    position: relative;
+}
+
+.affix {
+    top: 51px;
+}

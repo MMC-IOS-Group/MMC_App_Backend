@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>MMC Announcement</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+
+    <%= css :announcement_css%>
+
+  </head>
+
+  <body>
+
+  <div class='container'>
+  <% @announcements.each do |a| %>
+
+      <div class='row'>
+          <div class='span8 announcement'>
+              <p class='title'><%= a.title %></p>
+              <p class='info'>posted  by <%= a.user.name %> on <%= a.created_at.strftime("%m/%d/%Y at %I:%M%p") %></p>
+              <p class='content'><%= a.content %></p>
+          </div>
+      </div>
+
+  <% end %>
+
+  </div>
+
+  </body>
+</html>

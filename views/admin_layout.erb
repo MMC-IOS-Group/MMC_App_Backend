@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+
+    <!-- Le styles -->
+    <style>
+      body {
+        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+      }
+    </style>
+
+    <%= css :admin_css %>
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top navbar-inverse">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="#">Media, Marketing, and Communication Scholars</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+                <li class="<%= @active[:announcement] %>"><a href="/admin/announcements">Annoucements</a></li>
+                <% if current_user.role == 2 %>
+                <li class='<%= @active[:user] %>'><a href="/admin/users">Users</a></li>
+                <% end %>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <%= yield %>
+
+    <%= js :jslibs %>
+
+    <%= yield_content :extra_js%>
+  </body>
+</html>

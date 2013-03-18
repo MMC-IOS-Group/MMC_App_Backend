@@ -1,0 +1,100 @@
+<div class='container'>
+    <div class='row'>
+        <div class='span12'>
+            <h1>Announcements</h1>
+        </div>
+        <div class='span9'>
+
+            <table class='table table-hover'>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Posted</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <% if @announcements.length == 0 %>
+                    <tr>
+                        <td colspan=4>No announcements posted</td>
+                    </tr>
+                <% else %>
+                    <% @announcements.each do |a| %>
+                    <tr>
+                        <td class='title'>
+                            <%= a.title %>
+                        </td>
+                        <td class='username'><%= a.user.name %></td>
+                        <td class='time-posted'>
+                            <%= a.created_at.strftime('%D at %I:%M%P') %>
+                        </td>
+                        <td class='actions'>
+                            <a href='#' class='btn btn-small viewBtn'>View</a>
+                            <% if current_user.role == 2 %>
+                                <a href='#' data-id='<%= a.id %>' class='btn btn-small deleteBtn'>Delete</a>
+                            <% end %>
+                        </td>
+                    </tr>
+                    <tr class='announcement-content'>
+                        <td colspan=4>
+                            <div class='content'><%= a.content %></div>
+                        </td>
+                    </tr>
+                <% end %>
+            <% end%>
+                </tbody>
+            </table>
+        </div>
+
+        <div class='span3' id='sidebar-wrapper'>
+            <div class='row'>
+                <div id='sidebar' class='span3'>
+                    <a id='newAnnouncementBtn' class='btn btn-block btn-large btn-primary'><i class='icon-plus icon-white'></i> Post an announcement</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type='text/template' id='rowTemplate'>
+    <tr>
+        <td class='title'>
+        </td>
+        <td class='username'></td>
+        <td class='time-posted'></td>
+        <td class='actions'>
+            <a href='#' class='btn btn-small viewBtn'>View</a>
+            <a href='#' data-id='' class='btn btn-small deleteBtn'>Delete</a>
+        </td>
+    </tr>
+    <tr class='announcement-content'>
+        <td colspan=4>
+            <div class='content'></div>
+        </td>
+    </tr>
+</script>
+
+<div id='newDialog' class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Post An Announcement</h3>
+  </div>
+  <div class="modal-body">
+      <form id='newAnnouncementForm'>
+          <label>Title</label>
+          <input type='text' name='title' class='input-block-level'/>
+          <label>Content</label>
+          <textarea name='content' class='input-block-level' rows='10'></textarea>
+      </form>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss='modal'>Close</a>
+    <a href="#" class="btn btn-primary" id='submitBtn'>Submit</a>
+  </div>
+</div>
+
+<% content_for :extra_js do %>
+    <%= js :announcement_js %>
+<% end %>

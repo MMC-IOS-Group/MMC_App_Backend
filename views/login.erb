@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+<style>
+
+body {
+    background-color: #000;
+    font-family: Roboto, sans-serif;
+}
+
+#main {
+    background-color: white;
+    width: 300px;
+    margin: 30px auto;
+    padding: 30px;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+h1 {
+    font-size: 24px;
+    margin: 0 0 1em;
+    line-height: 1;
+    text-transform: uppercase;
+    color: #004985;
+}
+
+a {
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+    line-height: 1;
+    padding: 15px;
+    text-align: center;
+    border-radius: 3px;
+    color: black;
+    border: 1px solid #ddd;
+    text-shadow: -1px -1px #fff;
+
+
+    background-image: -moz-linear-gradient(top,  #fff, #ddd); /* FF3.6+ */
+    background-image: -webkit-linear-gradient(top,  #fff ,#ddd); /* Chrome10+,Safari5.1+ */
+    background-image: -o-linear-gradient(top,  #fff ,#ddd); /* Opera 11.10+ */
+    background-image: -ms-linear-gradient(top,  #fff ,#ddd); /* IE10+ */
+    background-image: linear-gradient(to bottom,  #fff ,#ddd); /* W3C */
+
+    -webkit-transition: background-position 500ms;
+    background-repeat: repeat-x;
+}
+
+a:hover {
+    background-color: #fff;
+    background-position: 0 1.5em;
+}
+a:active {
+    background-color: #eee;
+    background-image: none;
+    background-position: 0 0em;
+}
+
+
+</style>
+
+<link href='http://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+</head>
+
+<div id='main'>
+    <h1>Login</h1>
+    <a href='/auth/google'><%= img '/img/social_google_box.png', width: 24, height: 24, style: 'vertical-align: text-bottom' %> Sign in with Google</a>
+</div>
+
+</html>

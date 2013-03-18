@@ -1,0 +1,102 @@
+<div class='container'>
+    <div class='row'>
+        <div class='span12'>
+            <h1>Users</h1>
+        </div>
+        <div class='span9'>
+
+            <% if @unapproved.length != 0 %>
+            <h3> Unapproved Users</h3>
+            <table class='table table-hover'>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Role</th>
+                        <th>Added on</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @unapproved.each do |user| %>
+                    <tr>
+                        <td class='name'>
+                            <%= user.name %>
+                        </td>
+                        <td class='role'><%= user.role_name %></td>
+                        <td>
+                            <%= user.created_at.strftime('%D at %I:%M%P') %>
+                        </td>
+                        <td class='action' data-name='<%= user.name %>' data-role='<%=user.role%>' data-id='<%= user.id %>'>
+                            <button class='btn btn-small editBtn'>Edit</button>
+                            <button class='btn btn-small deleteBtn'>Delete</button>
+                        </td>
+                    </tr>
+                <% end %>
+                </tbody>
+            </table>
+            <% end%>
+
+            <h3> Approved Users</h3>
+            <table class='table table-hover'>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Role</th>
+                        <th>Added on</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <% if @approved.length == 0 %>
+                    <tr>
+                        <td colspan=4>No registered users! How did you get in here?</td>
+                    </tr>
+                <% else %>
+                    <% @approved.each do |user| %>
+                        <tr>
+                            <td class='name'>
+                                <%= user.name %>
+                            </td>
+                            <td class='role'><%= user.role_name %></td>
+                            <td>
+                                <%= user.created_at.strftime('%D at %I:%M%P') %>
+                            </td>
+                            <td class='action' data-name='<%= user.name %>' data-role='<%=user.role%>' data-id='<%= user.id %>'>
+                                <button class='btn btn-small editBtn'>Edit</button>
+                                <button class='btn btn-small deleteBtn'>Delete</button>
+                            </td>
+                        </tr>
+                    <% end %>
+                <% end%>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id='editDialog' class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Edit a user</h3>
+  </div>
+  <div class="modal-body">
+      <form id='editUserForm'>
+          <label>Name</label>
+          <input type='text' name='name' class='input-block-level'/>
+          <label>Role</label>
+          <select name='role' class='input-block-level'>
+              <option value='0'>Unapproved</option>
+              <option value='1'>Group Leader</option>
+              <option value='2'>Administrator</option>
+          </select>
+      </form>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss='modal'>Close</a>
+    <a href="#" class="btn btn-primary" id='submitBtn'>Submit</a>
+  </div>
+</div>
+
+<% content_for :extra_js do %>
+    <%= js :user_js %>
+<% end %>
