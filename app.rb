@@ -40,6 +40,20 @@ class App < Sinatra::Base
     serve '/css', from: 'assets/css'
     serve '/img', from: 'assets/img'
 
+    css :admin_css, [
+      '/css/style.css',
+      '/css/admin.css'
+    ]
+
+    js :announcement_js, [
+      '/js/announcement_admin.js'
+    ]
+
+    js :user_js, [
+      '/js/user_admin.js'
+    ]
+
+    js :jslibs, App.settings.global_assets[:jslibs]
   }
 
   set :global_assets, Hash.new
