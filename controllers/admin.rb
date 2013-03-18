@@ -16,7 +16,7 @@ class App < Sinatra::Base
         '/js/user_admin.js'
       ]
 
-      js :jslibs, settings.global_assets[:jslibs]
+      js :jslibs, App.settings.global_assets[:jslibs]
     }
 
     get /(\/)?/ do

@@ -35,28 +35,28 @@ class App < Sinatra::Base
 
   set :scss, { :load_paths => [ "#{App.root}/assets/css/" ] }
 
+  set :global_assets, Hash.new
+  settings.global_assets[:jslibs] = [
+    '/js/libs/jquery-1.9.1.min.js',
+    '/js/libs/bootstrap/bootstrap-transition.js',
+    '/js/libs/bootstrap/bootstrap-alert.js',
+    '/js/libs/bootstrap/bootstrap-modal.js',
+    '/js/libs/bootstrap/bootstrap-dropdown.js',
+    '/js/libs/bootstrap/bootstrap-scrollspy.js',
+    '/js/libs/bootstrap/bootstrap-tab.js',
+    '/js/libs/bootstrap/bootstrap-tooltip.js',
+    '/js/libs/bootstrap/bootstrap-popover.js',
+    '/js/libs/bootstrap/bootstrap-button.js',
+    '/js/libs/bootstrap/bootstrap-collapse.js',
+    '/js/libs/bootstrap/bootstrap-carousel.js',
+    '/js/libs/bootstrap/bootstrap-typeahead.js',
+    '/js/libs/bootstrap/bootstrap-affix.js',
+  ]
+
   assets {
     serve '/js', from: 'assets/js'
     serve '/css', from: 'assets/css'
     serve '/img', from: 'assets/img'
-
-    set :global_assets, Hash.new
-    settings.global_assets[:jslibs] = [
-      '/js/libs/jquery-1.9.1.min.js',
-      '/js/libs/bootstrap/bootstrap-transition.js',
-      '/js/libs/bootstrap/bootstrap-alert.js',
-      '/js/libs/bootstrap/bootstrap-modal.js',
-      '/js/libs/bootstrap/bootstrap-dropdown.js',
-      '/js/libs/bootstrap/bootstrap-scrollspy.js',
-      '/js/libs/bootstrap/bootstrap-tab.js',
-      '/js/libs/bootstrap/bootstrap-tooltip.js',
-      '/js/libs/bootstrap/bootstrap-popover.js',
-      '/js/libs/bootstrap/bootstrap-button.js',
-      '/js/libs/bootstrap/bootstrap-collapse.js',
-      '/js/libs/bootstrap/bootstrap-carousel.js',
-      '/js/libs/bootstrap/bootstrap-typeahead.js',
-      '/js/libs/bootstrap/bootstrap-affix.js',
-    ]
 
     css :admin_css, [
       '/css/style.css',
@@ -71,7 +71,7 @@ class App < Sinatra::Base
       '/js/user_admin.js'
     ]
 
-    js :jslibs, settings.global_assets[:jslibs]
+    js :jslibs, App.settings.global_assets[:jslibs]
 
     css :announcement_css, [
       '/css/style.css',
@@ -80,7 +80,7 @@ class App < Sinatra::Base
 
     css_compression :sass
     js_compression :uglify
-    App.assets.js :jslibs, settings.global_assets[:jslibs]
+    App.assets.js :jslibs, App.settings.global_assets[:jslibs]
   }
 
 
